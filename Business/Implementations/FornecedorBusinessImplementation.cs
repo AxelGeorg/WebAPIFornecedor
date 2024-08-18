@@ -1,7 +1,10 @@
 ﻿using Google.Protobuf.Compiler;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using WebAPIFornecedor.Data.Converter.Implementations;
+using WebAPIFornecedor.Data.VO;
 using WebAPIFornecedor.Model;
 using WebAPIFornecedor.Repository;
 
@@ -10,15 +13,18 @@ namespace WebAPIFornecedor.Business.Implementations
     public class FornecedorBusinessImplementation : IFornecedorBusiness
     {
         private readonly IFornecedorRepository _repository;
+        private readonly FornecedorConverter _converter;
 
         public FornecedorBusinessImplementation(IFornecedorRepository repository)
         {
             _repository = repository;
+            _converter = new FornecedorConverter();
         }
 
-        public Fornecedor Create(Fornecedor fornecedor)
+        public Fornecedor Create(FornecedorVO fornecedor)
         {
-            return _repository.Create(fornecedor);
+            Fornecedor fornecedorEntity = _converter.Parse(fornecedor);
+            return _repository.Create(fornecedorEntity);
         }
 
         public void Delete(long id)

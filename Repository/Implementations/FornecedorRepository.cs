@@ -5,7 +5,7 @@ using System.Linq;
 using WebAPIFornecedor.Model;
 using WebAPIFornecedor.Model.Context;
 
-namespace WebAPIFornecedor.Repository
+namespace WebAPIFornecedor.Repository.Implementations
 {
     public class FornecedorRepository : IFornecedorRepository
     {
@@ -18,7 +18,6 @@ namespace WebAPIFornecedor.Repository
             _context = context;
             _dabaSet = _context.Set<Fornecedor>();
         }
-
 
         public Fornecedor Create(Fornecedor item)
         {

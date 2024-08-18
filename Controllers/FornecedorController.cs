@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using WebAPIFornecedor.Business;
+using WebAPIFornecedor.Data.VO;
 using WebAPIFornecedor.Model;
 
 namespace WebAPIFornecedor.Controllers
@@ -21,12 +22,21 @@ namespace WebAPIFornecedor.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType((200), Type = typeof(List<Fornecedor>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get()
         {
             return Ok(_fornecedorBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType((200), Type = typeof(Fornecedor))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(404)]
         public IActionResult Get(long id)
         {
             Fornecedor fornecedor = _fornecedorBusiness.FindById(id);
@@ -37,7 +47,10 @@ namespace WebAPIFornecedor.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Fornecedor fornecedor)
+        [ProducesResponseType((200), Type = typeof(Fornecedor))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult Post([FromBody] FornecedorVO fornecedor)
         {
             if (fornecedor == null)
                 return BadRequest();
@@ -46,6 +59,9 @@ namespace WebAPIFornecedor.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType((200), Type = typeof(Fornecedor))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Put([FromBody] Fornecedor fornecedor)
         {
             if (fornecedor == null)
@@ -55,6 +71,10 @@ namespace WebAPIFornecedor.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         public IActionResult Delete(long id)
         {
             _fornecedorBusiness.Delete(id);
