@@ -1,6 +1,6 @@
 # API Fornecedor
 
-Esta é uma API RESTful para gerenciamento de fornecedores.
+Esta é uma WEB API RESTful para gerenciamento de fornecedores, utilizando ASP.NET Core.
 
 ## Configuração do Banco de Dados
 
