@@ -24,6 +24,7 @@ namespace WebAPIFornecedor.Business.Implementations
         public Fornecedor Create(FornecedorVO fornecedor)
         {
             Fornecedor fornecedorEntity = _converter.Parse(fornecedor);
+
             return _repository.Create(fornecedorEntity);
         }
 
@@ -42,9 +43,12 @@ namespace WebAPIFornecedor.Business.Implementations
             return _repository.FindById(id);
         }
 
-        public Fornecedor Update(Fornecedor fornecedor)
+        public Fornecedor Update(long id, FornecedorVO fornecedor)
         {
-            return _repository.Update(fornecedor);
+            Fornecedor fornecedorEntity = _converter.Parse(fornecedor);
+            fornecedorEntity.Id = id;
+
+            return _repository.Update(fornecedorEntity);
         }
     }
 }

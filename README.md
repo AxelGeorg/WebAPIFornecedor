@@ -17,7 +17,8 @@ CREATE TABLE fornecedor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL
-);´´´
+);
+´´´
 
 
 
@@ -26,23 +27,20 @@ CREATE TABLE fornecedor (
 
 Após a configuração do banco de dados e a execução do projeto, os seguintes endpoints estarão disponíveis:
 
-
-Após a configuração do banco de dados e a execução do projeto, os seguintes endpoints estarão disponíveis:
-
-### FindAll: Retorna todos os fornecedores.
-- GET: https://localhost:44337/api/Fornecedor/v1
-### FindById: Retorna um fornecedor específico com base no ID.
-- GET: https://localhost:44337/api/Fornecedor/v1/{id}
-### Update: Atualiza as informações de um fornecedor.
-- PUT: https://localhost:44337/api/Fornecedor/v1
+* FindAll: Retorna todos os fornecedores.
+** GET: [https://localhost:44337/api/Fornecedor/v1]
+* FindById: Retorna um fornecedor específico com base no ID.
+** GET: [https://localhost:44337/api/Fornecedor/v1/{id}]
+* Update: Atualiza as informações de um fornecedor.
+** PUT: [https://localhost:44337/api/Fornecedor/v1]
 ### Delete: Exclui um fornecedor com base no ID.
-- DELETE: https://localhost:44337/api/Fornecedor/v1/{id}
+* DELETE: [https://localhost:44337/api/Fornecedor/v1/{id}]
 
 
 ## Como Executar o Projeto
-- Certifique-se de que o banco de dados está configurado conforme descrito acima.
-- Clone o repositório do projeto.
-- Configure a string de conexão com o banco de dados MySQL no arquivo appsettings.json.
-- Execute o projeto usando o Visual Studio ou via dotnet run no terminal.
+1. Certifique-se de que o banco de dados está configurado conforme descrito acima.
+2. Clone o repositório do projeto.
+3. Configure a string de conexão com o banco de dados MySQL no arquivo **appsettings.json**.
+4. Execute o projeto usando o Visual Studio ou via dotnet run no terminal.
 
 

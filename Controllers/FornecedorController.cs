@@ -9,7 +9,7 @@ using WebAPIFornecedor.Model;
 namespace WebAPIFornecedor.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/v1")]
+    [Route("api/fornecedores")]
     public class FornecedorController : ControllerBase
     {
         private readonly ILogger<FornecedorController> _logger;
@@ -22,18 +22,21 @@ namespace WebAPIFornecedor.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType((200), Type = typeof(List<Fornecedor>))]
+        [ProducesResponseType(200, Type = typeof(List<Fornecedor>))]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         public IActionResult Get()
         {
-            return Ok(_fornecedorBusiness.FindAll());
+            var fornecedores = _fornecedorBusiness.FindAll();
+            if (fornecedores == null || fornecedores.Count == 0)
+                return NoContent();
+
+            return Ok(fornecedores);
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType((200), Type = typeof(Fornecedor))]
-        [ProducesResponseType(204)]
+        [HttpGet("{id:long}")]
+        [ProducesResponseType(200, Type = typeof(Fornecedor))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [ProducesResponseType(404)]
@@ -47,7 +50,7 @@ namespace WebAPIFornecedor.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType((200), Type = typeof(Fornecedor))]
+        [ProducesResponseType(201, Type = typeof(Fornecedor))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         public IActionResult Post([FromBody] FornecedorVO fornecedor)
@@ -55,19 +58,25 @@ namespace WebAPIFornecedor.Controllers
             if (fornecedor == null)
                 return BadRequest();
 
-            return Ok(_fornecedorBusiness.Create(fornecedor));
+            Fornecedor createdFornecedor = _fornecedorBusiness.Create(fornecedor);
+            return CreatedAtAction(nameof(Get), new { id = createdFornecedor.Id }, createdFornecedor);
         }
 
-        [HttpPut]
-        [ProducesResponseType((200), Type = typeof(Fornecedor))]
+        [HttpPut("{id:long}")]
+        [ProducesResponseType(200, Type = typeof(Fornecedor))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IActionResult Put([FromBody] Fornecedor fornecedor)
+        [ProducesResponseType(404)]
+        public IActionResult Put(long id, [FromBody] FornecedorVO fornecedor)
         {
             if (fornecedor == null)
                 return BadRequest();
 
-            return Ok(_fornecedorBusiness.Update(fornecedor));
+            Fornecedor updatedFornecedor = _fornecedorBusiness.Update(id, fornecedor);
+            if (updatedFornecedor == null)
+                return NotFound();
+
+            return Ok(updatedFornecedor);
         }
 
         [HttpDelete("{id}")]
@@ -77,8 +86,11 @@ namespace WebAPIFornecedor.Controllers
 
         public IActionResult Delete(long id)
         {
-            _fornecedorBusiness.Delete(id);
+            Fornecedor fornecedor = _fornecedorBusiness.FindById(id);
+            if (fornecedor == null)
+                return NotFound();
 
+            _fornecedorBusiness.Delete(id);
             return NoContent();
         }
     }

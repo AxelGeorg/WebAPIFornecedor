@@ -9,7 +9,7 @@ namespace WebAPIFornecedor.Business
         Fornecedor Create(FornecedorVO fornecedor);
         Fornecedor FindById(long id);
         List<Fornecedor> FindAll();
-        Fornecedor Update(Fornecedor person);
+        Fornecedor Update(long id, FornecedorVO person);
         void Delete(long id);
     }
 }
