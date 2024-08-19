@@ -28,13 +28,13 @@ CREATE TABLE fornecedor (
 Após a configuração do banco de dados e a execução do projeto, os seguintes endpoints estarão disponíveis:
 
 * FindAll: Retorna todos os fornecedores.
-** GET: [https://localhost:44337/api/Fornecedor/v1]
+>GET: [https://localhost:44337/api/Fornecedor/v1]
 * FindById: Retorna um fornecedor específico com base no ID.
 ** GET: [https://localhost:44337/api/Fornecedor/v1/{id}]
-* Update: Atualiza as informações de um fornecedor.
+>Update: Atualiza as informações de um fornecedor.
 ** PUT: [https://localhost:44337/api/Fornecedor/v1]
 ### Delete: Exclui um fornecedor com base no ID.
-* DELETE: [https://localhost:44337/api/Fornecedor/v1/{id}]
+>DELETE: [https://localhost:44337/api/Fornecedor/v1/{id}]
 
 
 ## Como Executar o Projeto
