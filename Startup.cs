@@ -45,9 +45,9 @@ namespace WebAPIFornecedor
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "Web API em C# utilizando ASP.NET Core and Docker",
+                        Title = "Web API em C# utilizando ASP.NET Core",
                         Version = "v1",
-                        Description = "Web API em C# utilizando ASP.NET Core and Docker'",
+                        Description = "Web API em C# utilizando ASP.NET Core'",
                         Contact = new OpenApiContact
                         {
                             Name = "Axel Georg",
